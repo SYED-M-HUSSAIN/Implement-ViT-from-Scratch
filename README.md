@@ -26,6 +26,4 @@ The Transformer encoder consists of alternating layers of multiheaded self-atten
 \[ y = LN(z_0^L) \]
 
 ### References
-Published as a conference paper at ICLR 2021
-
-[Research Paper](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/Research%20paper.pdf)
+[Published as a conference paper at ICLR 2021](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/Research%20paper.pdf)
