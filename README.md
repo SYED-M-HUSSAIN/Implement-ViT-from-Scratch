@@ -1,9 +1,14 @@
 
+<<<<<<< HEAD
 # Vision Transformer from Scratch
+=======
+## TITLE : AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE
+>>>>>>> 9bae5189939a8632826fe9b7c269381efd6c9d67
 
 This repository contains an implementation of a Vision Transformer (ViT) research paper tiitle **"AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE"** from scratch using PyTorch . The project is organized into separate modules for better readability and maintainability, following best practices.
 ![Vision Transformer Model](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/ViT.png)
 
+<<<<<<< HEAD
 ## Project Structure
 
 ```
@@ -22,6 +27,14 @@ vision_transformer_project/
 ```
 
 ## Components
+=======
+### Vision Transformer (ViT)
+An overview of the model is depicted in Figure 1. The standard Transformer receives as input a 1D sequence of token embeddings.
+
+
+![Vision Transformer Model](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/ViT.png)
+
+>>>>>>> 9bae5189939a8632826fe9b7c269381efd6c9d67
 
 1. **Vision Transformer**: The main Vision Transformer class.
 2. **MLP Head**: The Multi-Layer Perceptron head for classification.
@@ -31,6 +44,7 @@ vision_transformer_project/
 
 ## Installation
 
+<<<<<<< HEAD
 1. Clone the repository:
     ```bash
     git clone https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch.git
@@ -141,3 +155,37 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 - The implementation is inspired by the Vision Transformer (ViT) paper by Dosovitskiy et al, [Published as a conference paper at ICLR 2021](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/Research%20paper.pdf)
 
+=======
+### Equations
+
+The equations used in our model are as follows:
+
+
+
+1. **Initial Embedding**:
+```math
+   
+    z_0 = [x_{class}; x_1^pE; x_2^pE; \cdots; x_N^pE] + E_{pos}, E \in \mathbb{R}^{(P^2 \cdot C) \times D}, E_{pos} \in \mathbb{R}^{(N+1) \times D}
+   
+```
+2. **Multi-Head Self-Attention (MSA) with Layer Normalization (LN)**:
+```math
+   
+   z_0^l = MSA(LN(z_{l-1})) + z_{l-1}, l = 1 \ldots L
+```
+3. **Multi-Layer Perceptron (MLP) with Layer Normalization (LN)**:
+```math
+   
+   z_l = MLP(LN(z_0^l)) + z_0^l, l = 1 \ldots L
+   
+```
+4. **Final Output**:
+```math
+   
+   y = LN(z_0^L)
+   
+```
+
+### References
+[Published as a conference paper at ICLR 2021](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/Research%20paper.pdf)
+>>>>>>> 9bae5189939a8632826fe9b7c269381efd6c9d67
