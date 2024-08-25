@@ -25,11 +25,6 @@ vision_transformer_project/
 ## Components
 =======
 ### Vision Transformer (ViT)
-An overview of the model is depicted in Figure 1. The standard Transformer receives as input a 1D sequence of token embeddings.
-
-
-![Vision Transformer Model](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/ViT.png)
-
 
 1. **Vision Transformer**: The main Vision Transformer class.
 2. **MLP Head**: The Multi-Layer Perceptron head for classification.
