@@ -1,14 +1,8 @@
-
-<<<<<<< HEAD
 # Vision Transformer from Scratch
-=======
-## TITLE : AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE
->>>>>>> 9bae5189939a8632826fe9b7c269381efd6c9d67
 
 This repository contains an implementation of a Vision Transformer (ViT) research paper tiitle **"AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE"** from scratch using PyTorch . The project is organized into separate modules for better readability and maintainability, following best practices.
 ![Vision Transformer Model](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/ViT.png)
 
-<<<<<<< HEAD
 ## Project Structure
 
 ```
@@ -34,7 +28,6 @@ An overview of the model is depicted in Figure 1. The standard Transformer recei
 
 ![Vision Transformer Model](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/ViT.png)
 
->>>>>>> 9bae5189939a8632826fe9b7c269381efd6c9d67
 
 1. **Vision Transformer**: The main Vision Transformer class.
 2. **MLP Head**: The Multi-Layer Perceptron head for classification.
@@ -44,7 +37,6 @@ An overview of the model is depicted in Figure 1. The standard Transformer recei
 
 ## Installation
 
-<<<<<<< HEAD
 1. Clone the repository:
     ```bash
     git clone https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch.git
@@ -188,4 +180,3 @@ The equations used in our model are as follows:
 
 ### References
 [Published as a conference paper at ICLR 2021](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/Research%20paper.pdf)
->>>>>>> 9bae5189939a8632826fe9b7c269381efd6c9d67
