@@ -1,31 +1,143 @@
-# Implement-ViT-from-Scratch
 
-## AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE
+# Vision Transformer from Scratch
 
-### Abstract
-While the Transformer architecture has become the de-facto standard for natural language processing tasks, its applications to computer vision remain limited. In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place. We show that this reliance on CNNs is not necessary and a pure transformer applied directly to sequences of image patches can perform very well on image classification tasks. When pre-trained on large amounts of data and transferred to multiple mid-sized or small image recognition benchmarks (ImageNet, CIFAR-100, VTAB, etc.), Vision Transformer (ViT) attains excellent results compared to state-of-the-art convolutional networks while requiring substantially fewer computational resources to train.
+This repository contains an implementation of a Vision Transformer (ViT) research paper tiitle **"AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE"** from scratch using PyTorch . The project is organized into separate modules for better readability and maintainability, following best practices.
+![Vision Transformer Model](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/ViT.png)
 
-### Vision Transformer (ViT)
-An overview of the model is depicted in Figure 1. The standard Transformer receives as input a 1D sequence of token embeddings. To handle 2D images, we reshape the image \( x \in \mathbb{R}^{H \times W \times C} \) into a sequence of flattened 2D patches \( x_p \in \mathbb{R}^{N \times (P^2 \cdot C)} \), where \( (H, W) \) is the resolution of the original image, \( C \) is the number of channels, \( (P, P) \) is the resolution of each image patch, and \( N = \frac{HW}{P^2} \) is the resulting number of patches, which also serves as the effective input sequence length for the Transformer. The Transformer uses constant latent vector size \( D \) through all of its layers, so we flatten the patches and map to \( D \) dimensions with a trainable linear projection (Eq. 1). We refer to the output of this projection as the patch embeddings.
+## Project Structure
 
-![Vision Transformer Model](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/ViT.png)
+```
+vision_transformer_project/
+│
+├── vision_transformer/
+│   ├── __init__.py
+│   ├── vision_transformer.py
+│   ├── mlp_head.py
+│   ├── transformer_encoder.py
+│   ├── layer_norm.py
+│   └── utils.py
+│
+├── main.py
+└── requirements.txt
+```
 
-Similar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches (\( z_0^0 = x_{class} \)), whose state at the output of the Transformer encoder (\( z_0^L \)) serves as the image representation \( y \) (Eq. 4). Both during pre-training and fine-tuning, a classification head is attached to \( z_0^L \). The classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.
+## Components
 
-Position embeddings are added to the patch embeddings to retain positional information. We use standard learnable 1D position embeddings, since we have not observed significant performance gains from using more advanced 2D-aware position embeddings. The resulting sequence of embedding vectors serves as input to the encoder.
+1. **Vision Transformer**: The main Vision Transformer class.
+2. **MLP Head**: The Multi-Layer Perceptron head for classification.
+3. **Transformer Encoder**: The Transformer Encoder layer.
+4. **Normalization Layer**: The Transformer Normalization layer.
+5. **Utils**: Utility functions for image processing and patch embedding.
 
-The Transformer encoder consists of alternating layers of multiheaded self-attention (MSA) and MLP blocks (Eq. 2, 3). Layernorm (LN) is applied before every block, and residual connections after every block. The MLP contains two layers with a GELU non-linearity.
+## Installation
 
-### Equations
-\[ z_0 = [x_{class}; x_1^pE; x_2^pE; \cdots; x_N^pE] + E_{pos}, E \in \mathbb{R}^{(P^2 \cdot C) \times D}, E_{pos} \in \mathbb{R}^{(N+1) \times D} \]
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch.git
+    cd vision_transformer_project
+    ```
 
-\[ z_0^l = MSA(LN(z_{l-1})) + z_{l-1}, l = 1 \ldots L \]
+2. Create a virtual environment and activate it:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
 
-\[ z_l = MLP(LN(z_0^l)) + z_0^l, l = 1 \ldots L \]
+3. Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-\[ y = LN(z_0^L) \]
+## Usage
 
-### References
-Published as a conference paper at ICLR 2021
+1. Place your image file (e.g., `Image.png`) in the project directory.
 
-[Research Paper](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/Research%20paper.pdf)
+2. Run the main script:
+    ```bash
+    python main.py
+    ```
+
+## Code Overview
+
+### Vision Transformer
+
+The Vision Transformer class is defined in `vision_transformer/vision_transformer.py`. It includes methods for patch embedding, positional encoding, and transformer encoder layers.
+
+![Equations](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/equations.png)
+### MLP Head
+
+The MLP Head class is defined in `vision_transformer/mlp_head.py`. It is used for the final classification task.
+![MLP](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/mlp.png)
+### Transformer Encoder
+
+The Transformer Encoder class is defined in `vision_transformer/transformer_encoder.py`. It includes multi-head attention and feed-forward layers.
+
+![Encoder](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/encoder.png)
+
+### Normalization Layer
+
+The Transformer Layer Normalization class is defined in `vision_transformer/layer_norm.py`.
+
+![Norm](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/norm.png)
+
+### Utils
+
+Utility functions for image processing and patch embedding are defined in `vision_transformer/utils.py`.
+![TABLE](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/blob/main/content/table.png)
+
+## Example
+
+Here is an example of how to use the Vision Transformer:
+
+```python
+import torch
+import torch.nn.functional as F
+import torchvision.transforms as T
+from vision_transformer import VisionTransformer, image_to_patches, get_patch_embeddings
+
+def main():
+    IMAGE_SIZE = 224
+    CHANNEL_SIZE = 3
+    NUM_CLASSES = 10
+    DROPOUT_PROB = 0.1
+    NUM_LAYERS = 12
+    EMBEDDING_DIM = 768
+    NUM_HEADS = 12
+    HIDDEN_DIM = 3072
+    PATCH_SIZE = 16
+    IMAGE_PATH = 'Image.png'
+
+    image_patches = image_to_patches(IMAGE_PATH, PATCH_SIZE)
+    patch_embeddings = get_patch_embeddings(image_patches, EMBEDDING_DIM)
+
+    vision_transformer = VisionTransformer(
+        patch_size=PATCH_SIZE,
+        image_size=IMAGE_SIZE,
+        channel_size=CHANNEL_SIZE,
+        num_layers=NUM_LAYERS,
+        embedding_dim=EMBEDDING_DIM,
+        num_heads=NUM_HEADS,
+        hidden_dim=HIDDEN_DIM,
+        dropout_prob=DROPOUT_PROB,
+        num_classes=NUM_CLASSES
+    )
+
+    vit_output = vision_transformer(patch_embeddings)
+    print(vit_output.shape)
+
+    probabilities = F.softmax(vit_output[0], dim=0)
+    print(probabilities)
+    print(torch.sum(probabilities))
+
+if __name__ == "__main__":
+    main()
+```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+## Acknowledgements
+
+- The implementation is inspired by the Vision Transformer (ViT) paper by Dosovitskiy et al, [Published as a conference paper at ICLR 2021](https://github.com/SYED-M-HUSSAIN/Implement-ViT-from-Scratch/content/Research%20paper.pdf)
+
